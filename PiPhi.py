@@ -438,10 +438,20 @@ while pianobar.isalive():
                     if cursorY < 1: cursorY += 1 # Move cursor
                     else:           listTop += 1 # Y-scroll
                     xStation = 0                 # Reset X-scroll
+                else:
+                    stationNew = 0               # goto first station
+                    cursorY = 0                  # Move cursor
+                    listTop = 0                  # Y-scroll
+                    xStation = 0                 # Reset X-scroll
             elif stationNew > 0:                 # btnUp implied
                     stationNew -= 1              # Prev station
                     if cursorY > 0: cursorY -= 1 # Move cursor
                     else:           listTop -= 1 # Y-scroll
+                    xStation = 0                 # Reset X-scroll
+            else:                                # btnUp implied and already at top
+                    stationNew = len(stationList) - 1   # goto last station
+                    cursorY = 1                         # Move cursor
+                    listTop = len(stationList) - 2      # Y-scroll
                     xStation = 0                 # Reset X-scroll
             staBtnTime = time.time()             # Reset button time
             xStation = drawStations(stationNew, listTop, 0, staBtnTime)
